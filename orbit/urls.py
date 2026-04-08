@@ -9,13 +9,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', accounts_views.landing_page, name='landing'),
     path('signup/', accounts_views.signup, name='signup'),
-    path('verify-pending/', accounts_views.verify_pending, name='verify_pending'),
-    path('verify/<str:token>/', accounts_views.verify_email, name='verify_email'),
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path('logout/', accounts_views.custom_logout, name='logout'),
     path('dashboard/', accounts_views.dashboard, name='dashboard'),
     path('profile/', profiles_views.profile_view, name='profile'),
     path('matches/', profiles_views.matches_view, name='matches'),
     path('chat/<int:user_id>/', chat_views.chat_view, name='chat'),
-    path('webpush/', include('webpush.urls')),
 ]

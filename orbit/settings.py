@@ -21,8 +21,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
-    'cloudinary_storage',
-    'cloudinary',
     'accounts',
     'profiles',
     'chat',
@@ -61,7 +59,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'orbit.wsgi.application'
 
-# PostgreSQL for production, SQLite for development
 if os.environ.get('DATABASE_URL'):
     DATABASES = {
         'default': dj_database_url.config(conn_max_age=600)
@@ -91,32 +88,9 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# Cloudinary config (add your keys from cloudinary.com)
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
-    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
-    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
-}
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/dashboard/'
 LOGIN_URL = '/login/'
 LOGOUT_REDIRECT_URL = '/'
 
 AUTH_USER_MODEL = 'accounts.User'
-
-# Email settings (for verification)
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
-
-# Web Push
-WEBPUSH_SETTINGS = {
-    "VAPID_PUBLIC_KEY": os.environ.get('VAPID_PUBLIC_KEY', ''),
-    "VAPID_PRIVATE_KEY": os.environ.get('VAPID_PRIVATE_KEY', ''),
-    "VAPID_ADMIN_EMAIL": os.environ.get('EMAIL_HOST_USER', 'admin@orbit.com')
-}
