@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Your Matches{% endblock %}
+{% block content %}
+<h2>YOUR MATCHES</h2>
+{% for match in matches %}
+<div class="match-card">
+    <div>
+        <strong>{{ match.user.username }}</strong><br>
+        <small>Match: {{ match.score|floatformat:0 }}%</small>
+    </div>
+    <a href="{% url 'chat' match.user.id %}" class="ghost-btn" style="padding: 8px 16px; font-size: 12px;">CHAT</a>
+</div>
+{% empty %}
+<p>No matches yet. Complete your profile to find matches!</p>
+{% endfor %}
+{% endblock %}

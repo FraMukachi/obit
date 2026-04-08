@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Your Profile{% endblock %}
+{% block content %}
+<h2>YOUR PROFILE</h2>
+<form method="post">
+    {% csrf_token %}
+    <input type="number" name="age" placeholder="Age" value="{{ profile.age }}">
+    <textarea name="bio" placeholder="Bio (tell us about yourself)" rows="4">{{ profile.bio }}</textarea>
+    <input type="text" name="interests" placeholder="Interests (comma separated)" value="{{ profile.interests }}">
+    <input type="text" name="location" placeholder="Location" value="{{ profile.location }}">
+    <button type="submit" class="ghost-btn">SAVE PROFILE</button>
+</form>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<h2>WELCOME, {{ user.username }}</h2>
+
+{% if claimed_today %}
+<div class="card" style="border-color: rgba(240,240,250,0.3);">
+    <p>✨ +10 ORBITS CLAIMED TODAY! ✨</p>
+</div>
+{% endif %}
+
+<div class="card">
+    <h3>YOUR ORBITS</h3>
+    <p style="font-size: 48px; margin: 10px 0;">{{ wallet.balance }}</p>
+    <small>Login daily to earn 10 Orbits</small>
+</div>
+
+<div class="card">
+    <h3>QUICK ACTIONS</h3>
+    <a href="{% url 'profile' %}" class="ghost-btn" style="margin: 5px;">EDIT PROFILE</a>
+    <a href="{% url 'matches' %}" class="ghost-btn" style="margin: 5px;">FIND MATCHES</a>
+</div>
+
+<div class="card">
+    <h3>HOW TO EARN ORBITS</h3>
+    <p>📅 Daily login: +10 Orbits</p>
+    <p>💬 Send a message: +1 Orbit</p>
+    <p>❤️ Get a match: +5 Orbits</p>
+    <p>🎉 New user bonus: +50 Orbits</p>
+</div>
+{% endblock %}
