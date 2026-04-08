@@ -2,12 +2,20 @@
 {% block title %}Your Profile{% endblock %}
 {% block content %}
 <h2>YOUR PROFILE</h2>
-<form method="post">
+
+{% if profile.photo_url %}
+<div style="text-align: center; margin-bottom: 20px;">
+    <img src="{{ profile.photo_url }}" alt="Profile photo" style="width: 150px; height: 150px; border-radius: 75px; object-fit: cover; border: 2px solid rgba(240,240,250,0.3);">
+</div>
+{% endif %}
+
+<form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <input type="number" name="age" placeholder="Age" value="{{ profile.age }}">
     <textarea name="bio" placeholder="Bio (tell us about yourself)" rows="4">{{ profile.bio }}</textarea>
     <input type="text" name="interests" placeholder="Interests (comma separated)" value="{{ profile.interests }}">
     <input type="text" name="location" placeholder="Location" value="{{ profile.location }}">
+    <input type="file" name="photo" accept="image/*">
     <button type="submit" class="ghost-btn">SAVE PROFILE</button>
 </form>
 {% endblock %}

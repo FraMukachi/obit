@@ -7,6 +7,8 @@ class Profile(models.Model):
     bio = models.TextField(max_length=500, blank=True)
     interests = models.CharField(max_length=200, blank=True)
     location = models.CharField(max_length=100, blank=True)
+    photo = models.ImageField(upload_to='profiles/', blank=True, null=True)
+    photo_url = models.URLField(blank=True, null=True)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Verify Your Email{% endblock %}
+{% block content %}
+<div style="text-align: center; min-height: 70vh; display: flex; flex-direction: column; justify-content: center;">
+    <h2>CHECK YOUR EMAIL</h2>
+    <p style="margin: 20px 0;">We sent a verification link to {{ user.email }}</p>
+    <p>Click the link to activate your account.</p>
+    <p style="margin-top: 20px;">After verification, you can start matching!</p>
+</div>
+{% endblock %}
